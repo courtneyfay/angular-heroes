@@ -10,12 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var hero_service_1 = require("./hero.service");
+var router_1 = require("@angular/router");
+//./hero';
+var hero_service_1 = require("../hero-service/hero.service");
+//./hero.service';
 var DashboardComponent = (function () {
-    function DashboardComponent(heroService) {
+    function DashboardComponent(heroService, route) {
         this.heroService = heroService;
+        this.route = route;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.heroService.getHeroes().then(function (heroes) {
+            _this.heroes = heroes;
+        });
     };
     return DashboardComponent;
 }());
@@ -25,7 +33,19 @@ DashboardComponent = __decorate([
         templateUrl: './dashboard.component.html',
         styleUrls: ['./dashboard.component.css']
     }),
-    __metadata("design:paramtypes", [hero_service_1.HeroService])
+    __metadata("design:paramtypes", [hero_service_1.HeroService,
+        router_1.ActivatedRoute])
 ], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
+///////////////////////////////////////////////////////////////////////////////////
+// IDEAS GRAVEYARD //
+/////////////////////
+//can use hero schema from hero file
+/*
+ Hero {
+  id: string;
+  name: string;
+}
+*/
+//needs to pass heroes into html
 //# sourceMappingURL=dashboard.component.js.map

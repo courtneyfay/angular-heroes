@@ -7,12 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var dashboard_component_1 = require("./dashboard.component");
-var hero_detail_component_1 = require("./hero-detail.component");
+var router_1 = require("@angular/router");
+var dashboard_component_1 = require("./dashboard/dashboard.component");
+// ./dashboard.component';
+var hero_detail_component_1 = require("./hero-detail/hero-detail.component");
+//./hero-dhero-detail.component';
+var heroes_component_1 = require("./heroes/heroes.component");
 var routes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'detail/:id', component: hero_detail_component_1.HeroDetailComponent },
-    { path: 'heroes', component: HeroesComponent }
+    { path: 'heroes', component: heroes_component_1.HeroesComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -21,9 +25,20 @@ var AppRoutingModule = (function () {
 }());
 AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [RouterModule.forRoot(routes)],
-        exports: [RouterModule]
+        imports: [router_1.RouterModule.forRoot(routes)],
+        exports: [router_1.RouterModule]
     })
 ], AppRoutingModule);
 exports.AppRoutingModule = AppRoutingModule;
+/*
+ROUTES:
+{ path: 'dashboard',  component: DashboardComponent },
+{ path: 'detail/:id', component: HeroDetailComponent },
+{ path: 'heroes',     component: HeroesComponent }
+
+dashboard.component.html 							[routerLink]="['/detail', hero.id]"
+heroes.component.ts										this.router.navigate(['/detail', this.selectedHero.id]);
+app.component.ts											<a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+                                                                        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+*/
 //# sourceMappingURL=app-routing.module.js.map

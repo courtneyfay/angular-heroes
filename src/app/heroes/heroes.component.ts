@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Hero } from './hero';
+import { Hero } from '../hero/hero';
+//./hero';
+import { HeroService } from '../hero-service/hero.service';
 
 @Component({
   selector: 'my-heroes',
+  templateUrl: './heroes.component.html',
   styleUrls: [ './heroes.component.css' ]
 })
 export class HeroesComponent implements OnInit {
@@ -12,13 +15,15 @@ export class HeroesComponent implements OnInit {
   selectedHero: Hero;
 
   constructor(
-    private heroService: HeroService) { }
-
-  getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
+    private heroService: HeroService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.heroService.getHeroes().then(heroes => {
+      this.heroes = heroes
+    })
   }
 
   onSelect(hero: Hero): void {
